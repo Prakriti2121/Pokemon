@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './logo.png';
@@ -9,9 +10,18 @@ function App() {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
-      const data = await response.json();
-      setPokemonList(data.results);
+      const cachedData = localStorage.getItem('pokemonList');
+      const cacheTime = localStorage.getItem('cacheTime');
+      const now = new Date();
+
+      if (cachedData && cacheTime && now - new Date(cacheTime) < 3600000) {
+        setPokemonList(JSON.parse(cachedData));
+      } else {
+        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
+        setPokemonList(response.data.results);
+        localStorage.setItem('pokemonList', JSON.stringify(response.data.results));
+        localStorage.setItem('cacheTime', new Date());
+      }
     };
     fetchPokemon();
   }, []);
@@ -29,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <img alt="react logo" className="logo" src="logo.png" />
+        <img alt="Pokémon logo" className="logo" src={logo} />
       </header>
 
       <main>

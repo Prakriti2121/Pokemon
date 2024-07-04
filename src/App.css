@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(to right, #FDDF3C, #3B4CCA);
+  background: linear-gradient(to left, #FDDF3C, #3B4CCA);
 }
 
 header {
@@ -10,7 +10,7 @@ header {
 }
 
 .logo {
-  width: 150px;
+  width: 200px;
   height: auto;
 }
 
@@ -47,7 +47,7 @@ header {
 }
 
 .pokemon-item a:hover {
-  color: #3B4CCA;
+  color: #693909;
 }
 
 ul {
