@@ -19,19 +19,32 @@ A web application built with React.js that allows users to search and view detai
 ## Installation
 
 1. **Clone the repository:**
-git clone https://github.com/Prakriti2121/Pokemon.git
+
+    ```sh
+    git clone https://github.com/Prakriti2121/Pokemon.git
+    ```
 
 2. **Navigate into the project directory:**
-cd pokemon-app
+
+    ```sh
+    cd pokemon-app
+    ```
 
 3. **Install dependencies:**
-npm install
+
+    ```sh
+    npm install
+    ```
 
 4. **Start the development server:**
-npm start
+
+    ```sh
+    npm start
+    ```
 
 5. **Open the application in your browser:**
-http://localhost:3000/#!
+
+    [http://localhost:3000/](http://localhost:3000/)
 
 ## Usage
 
@@ -44,10 +57,25 @@ http://localhost:3000/#!
 Contributions are welcome! If you would like to contribute to this project, follow these steps:
 
 1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/improvement`).
+2. Create a new branch:
+
+    ```sh
+    git checkout -b feature/improvement
+    ```
+
 3. Make your changes.
-4. Commit your changes (`git commit -am 'Add some feature'`).
-5. Push to the branch (`git push origin feature/improvement`).
+4. Commit your changes:
+
+    ```sh
+    git commit -am 'Add some feature'
+    ```
+
+5. Push to the branch:
+
+    ```sh
+    git push origin feature/improvement
+    ```
+
 6. Create a new Pull Request.
 
 Please follow coding conventions and maintain consistency with the existing code style.
@@ -62,9 +90,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For questions or support, you can reach me at [Mail to:](prakritiadhikari2121@gmail.com) or visit my [GitHub profile](https://github.com/Prakriti2121).
-
-
-
-
-
+For questions or support, you can reach me at [prakritiadhikari2121@gmail.com](mailto:prakritiadhikari2121@gmail.com) or visit my [GitHub profile](https://github.com/Prakriti2121).
