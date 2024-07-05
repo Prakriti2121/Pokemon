@@ -20,9 +20,10 @@ function App() {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
         setPokemonList(response.data.results);
         localStorage.setItem('pokemonList', JSON.stringify(response.data.results));
-        localStorage.setItem('cacheTime', new Date());
+        localStorage.setItem('cacheTime', now.toString());
       }
     };
+
     fetchPokemon();
   }, []);
 
