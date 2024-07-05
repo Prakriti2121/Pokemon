@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import logo from './logo.png';
 
@@ -17,10 +17,14 @@ function App() {
       if (cachedData && cacheTime && now - new Date(cacheTime) < 3600000) {
         setPokemonList(JSON.parse(cachedData));
       } else {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
-        setPokemonList(response.data.results);
-        localStorage.setItem('pokemonList', JSON.stringify(response.data.results));
-        localStorage.setItem('cacheTime', now.toString());
+        try {
+          const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
+          setPokemonList(response.data.results);
+          localStorage.setItem('pokemonList', JSON.stringify(response.data.results));
+          localStorage.setItem('cacheTime', now.toString());
+        } catch (error) {
+          console.error('Error fetching Pokemon:', error);
+        }
       }
     };
 
@@ -32,23 +36,33 @@ function App() {
   );
 
   const showPokemon = async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
-    setSelectedPokemon(data);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setSelectedPokemon(data);
+    } catch (error) {
+      console.error('Error fetching Pokemon details:', error);
+    }
   };
 
   return (
     <div className="App">
       <header>
-        <img alt="Pokémon logo" className="logo" src={logo} />
+        <img alt="Pokemon logo" className="logo" src={logo} />
+        <nav className="navbar">
+          <a href="/">Home</a>
+          <a href="/">About</a>
+          <a href="/">Contact</a>
+        </nav>
       </header>
 
       <main>
         <div className="search-container">
           <input
+            id="pokemon-search"
             className="search-box"
             type="text"
-            placeholder="Search..."
+            placeholder="Search Pokemon..."
             value={searchTerm}
             onChange={event => setSearchTerm(event.target.value)}
           />
@@ -61,18 +75,20 @@ function App() {
             <p>Height: {selectedPokemon.height}</p>
             <p>Weight: {selectedPokemon.weight}</p>
 
-            {selectedPokemon.stats.map((stat, index) => (
-              <div key={index}>
-                <p>{stat.stat.name}: {stat.base_stat}</p>
-              </div>
-            ))}
+            <div className="pokemon-stats">
+              {selectedPokemon.stats.map((stat, index) => (
+                <div key={index}>
+                  <p>{stat.stat.name}: {stat.base_stat}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
-        <ul>
+        <ul className="pokemon-list">
           {filteredPokemonList.map(pokemon => (
             <li key={pokemon.name} className="pokemon-item">
-              <a href="#" onClick={() => showPokemon(pokemon.url)}>
+              <a href="#!" onClick={() => showPokemon(pokemon.url)}>
                 {pokemon.name}
               </a>
             </li>
